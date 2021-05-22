@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Config
+config/
+mongo.config.js
+waka.config.js
+
+# Populate database
+populate-temp.js
