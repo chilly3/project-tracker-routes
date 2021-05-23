@@ -56,13 +56,35 @@ router.get('/users/:userid', (req, res) => {
   .catch(err => console.log(err));
 });
 
-//GET summaries for
+//GET stats for range (stats per period)
+router.get('/users/:userid/stats/:range', (req, res) => {
+  let range = req.params.range;
+  let userid = req.params.userid;
+  let authorization = wakatime_api;
+  console.log(req.params)
+
+  axios({
+    url: `/api/v1/users/${userid}/stats/${range}`,
+    method: 'get',
+    baseURL: 'https://wakatime.com',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://wakatime.com',
+      'Authorization': authorization
+    }
+  })
+  .then(({ data } = res) => {
+    res.send(data);
+  })
+  .catch(err => console.log(err));
+});
+
+
+//GET summaries for range (time per period)
 router.get('/users/:userid/summaries/:range', (req, res) => {
   let range = req.params.range;
   let userid = req.params.userid;
   let authorization = wakatime_api;
 
-  console.log(req.params);
   axios({
     url: `/api/v1/users/${userid}/summaries?range=${range}`,
     method: 'get',
@@ -76,7 +98,52 @@ router.get('/users/:userid/summaries/:range', (req, res) => {
     res.send(data);
   })
   .catch(err => console.log(err));
-})
+});
+
+
+
+///PROJECT API ROUTES///
+
+//GET projects for userid
+router.get('/users/:userid/projects', (req, res) => {
+  let userid = req.params.userid;
+  let authorization = wakatime_api;
+
+  axios({
+    url: `/api/v1/users/${userid}/projects`,
+    method: 'get',
+    baseURL: 'https://wakatime.com',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://wakatime.com',
+      'Authorization': authorization
+    }
+  })
+  .then(({ data } = res) => {
+    res.send(data);
+  })
+  .catch(err => console.log(err));
+});
+
+//GET total time for project
+router.get('/users/:userid/all_time_since_today/:project', (req, res) => {
+  let userid = req.params.userid;
+  let project = req.params.project;
+  let authorization = wakatime_api;
+
+  axios({
+    url: `/api/v1/users/${userid}/all_time_since_today?project=${project}`,
+    method: 'get',
+    baseURL: 'https://wakatime.com',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://wakatime.com',
+      'Authorization': authorization
+    }
+  })
+  .then(({ data } = res) => {
+    res.send(data);
+  })
+  .catch(err => console.log(err));
+});
 
 
 module.exports = router;

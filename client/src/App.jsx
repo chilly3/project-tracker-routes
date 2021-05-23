@@ -7,6 +7,8 @@ import Home from './components/Home.jsx';
 import User from './components/User.jsx';
 import Project from './components/Project.jsx';
 import Technology from './components/Technology.jsx';
+import Stats from './components/Stats.jsx';
+
 
 const user_data = waka_data.user;
 const daily_data = waka_data.days;
@@ -34,7 +36,10 @@ const App = () => {
               <Link to="/technology">Technologies</Link>
             </li>
             <li>
-              <Link to="/user">User Information</Link>
+              <Link to="/user">User</Link>
+            </li>
+            <li>
+              <Link to="/stats">Stats</Link>
             </li>
           </ul>
         </nav>
@@ -44,6 +49,7 @@ const App = () => {
           <Route path="/project"><Project /></Route>
           <Route path="/technology"><Technology /></Route>
           <Route path="/user"><User /></Route>
+          <Route path="/stats"><Stats /></Route>
           <Route path="/:id">
             <p>This text will render for any route other than those defined above</p>
           </Route>

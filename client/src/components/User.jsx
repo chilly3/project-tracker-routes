@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import async from 'async';
 import { DateTime } from 'luxon';
-import { Switch, Route, Link } from 'react-router-dom';
 import waka_data from '../../../config/data/wakatime_chilly3.json';
 
 const User = () => {
@@ -50,7 +50,7 @@ const User = () => {
     axios.get(`/api/v1/users/${userid}/summaries/${e}`)
     .then(({ data } = res) => {
       let days = 0;
-      const combined = data.data.map((day) => {
+      data.data.map((day) => {
         days += day.grand_total.total_seconds;
       })
       let seconds = days % 60;
