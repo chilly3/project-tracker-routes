@@ -14,7 +14,7 @@ const Stats = ({match}) => {
   const linkList = ranges.map((range, i) => {
     return (
       <li key={i}  className="h-item">
-        <Link className="stat-link" to={`${url}/${range}`}><i className="alert-light"><strong>{range}</strong></i></Link>
+        <Link className="stat-link" to={`${url}/${range}`}><i><strong>{range}</strong></i></Link>
       </li>
     )
   });

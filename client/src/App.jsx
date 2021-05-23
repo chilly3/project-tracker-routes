@@ -11,35 +11,28 @@ import Stats from './components/Stats.jsx';
 
 
 const user_data = waka_data.user;
-const daily_data = waka_data.days;
-
 
 const App = () => {
 
-  let all_time_data = 0;
-  let grandtotal = daily_data.map((day) => {
-    all_time_data += day.grand_total.total_seconds;
-  })
-  console.log(all_time_data);
   return (
     <div>
       <h1 className="title">Project Tracker Data Routes</h1>
       <nav className="navbar navbar-light">
           <ul className="nav navbar-nav">
-            <li>
-              <Link to="/">Home</Link>
+            <li className="appnav">
+              <Link to="/" className="app-link">Home</Link>
             </li>
-            <li>
-              <Link to="/project">Projects</Link>
+            <li className="appnav">
+              <Link to="/project" className="app-link">Projects</Link>
             </li>
-            <li>
-              <Link to="/technology">Technologies</Link>
+            <li className="appnav">
+              <Link to="/technology" className="app-link">Technologies</Link>
             </li>
-            <li>
-              <Link to="/user">User</Link>
+            <li className="appnav">
+              <Link to="/user" className="app-link">User</Link>
             </li>
-            <li>
-              <Link to="/stats">Stats</Link>
+            <li className="appnav">
+              <Link to="/stats" className="app-link">Stats</Link>
             </li>
           </ul>
         </nav>

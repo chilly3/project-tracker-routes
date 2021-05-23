@@ -8,7 +8,6 @@ import waka_data from '../../../config/data/wakatime_chilly3.json';
 const Project = () => {
   
   const user_data = waka_data.user;
-  const daily_data = waka_data.days;
   const userid = user_data.id;
 
   const [projects, setProjects] = useState({});
@@ -57,11 +56,16 @@ const Project = () => {
   console.log(projects);
   return (
     <div className="content">
-      <h3 className="content-title">Projects</h3>
-      <button className="get-projects" onClick={getProjects}>Get Projects</button>
-      <hr></hr>
-      <button className="get-project-time" onClick={getProject_time}>Get Project Time</button>
+      <div>
+        <div>
+          <hr></hr>
+          <h2 className="content-title">Projects</h2>
+          <button className="get-projects" onClick={getProjects}>Get Projects</button>
+          <hr></hr>
+          <button className="get-project-time" onClick={getProject_time}>Get Project Time</button>
+      </div>
     </div>
+  </div>
   );
 }
 

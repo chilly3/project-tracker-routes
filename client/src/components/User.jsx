@@ -8,7 +8,6 @@ import waka_data from '../../../config/data/wakatime_chilly3.json';
 const User = () => {
 
   const user_data = waka_data.user;
-  const daily_data = waka_data.days;
   const userid = user_data.id;
   const ranges = ['Today', 'Yesterday', 'Last 7 Days', 'Last 7 Days from Yesterday', 'Last 14 Days', 'Last 30 Days', 'This Week', 'Last Week', 'This Month', 'Last Month'];
   
@@ -102,23 +101,29 @@ const User = () => {
 
   console.log(user_info);
   return (
-      <div className="content">
-        <img src={user_info.photo} alt="user-photo" className="user-photo" />
-        <h3 className="content-title"><i className="alert-dark">User: </i>{user_data.email}</h3>
-        <p className="alert-dark"><strong>Last activity: </strong><i className="alert-info">{user_info.last_project}  </i>
-        <small className="alert-muted"><em>{user_info.last_activity}</em></small></p>
-        <p className="alert-dark"><strong>Total activity: </strong>
-        <i className="alert-success"> {total_time}</i><i className="alert-muted">{start_date}</i></p>
-        <hr></hr>
-        <p className="alert-dark"><strong>Recent activity: </strong>
-        <i className="alert-muted">{dates}</i>
-        <i className="alert-success"> {summary_time} </i>
-          <select value={event.target.value} onChange={getSummary}>
-            {selectForm}
-          </select>
-        </p>
-        <hr></hr>
+    <div className="content">
+      <div>
+        <div>
+          <hr></hr>
+          <h2 className="content-title">User</h2>
+          <img src={user_info.photo} alt="user-photo" className="user-photo" />
+          <p><i className="alert-dark strong">User: </i>{user_data.email}</p>
+          <p className="alert-dark"><strong>Last activity: </strong><i className="alert-info">{user_info.last_project}  </i>
+          <small className="alert-muted"><em>{user_info.last_activity}</em></small></p>
+          <p className="alert-dark"><strong>Total activity: </strong>
+          <i className="alert-success"> {total_time}</i><i className="alert-muted">{start_date}</i></p>
+          <hr></hr>
+          <p className="alert-dark"><strong>Recent activity: </strong>
+          <i className="alert-muted">{dates}</i>
+          <i className="alert-success"> {summary_time} </i>
+            <select value={event.target.value} onChange={getSummary}>
+              {selectForm}
+            </select>
+          </p>
+          <hr></hr>
+        </div>
       </div>
+    </div>
   );
 }
 

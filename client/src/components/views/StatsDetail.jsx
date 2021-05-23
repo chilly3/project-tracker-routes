@@ -7,8 +7,7 @@ import waka_data from '../../../../config/data/wakatime_chilly3.json';
 
 
 const StatsDetail = ({data}) => {
-  const { days, user } = waka_data;
-  const userid = user.id;
+  const userid = waka_data.user.id;
   const ranges = ['last_7_days', 'last_30_days', 'last_6_months', 'last_year'];
   const { url, path } = useRouteMatch();
   let slash = url.lastIndexOf('/') + 1;
@@ -23,6 +22,8 @@ const StatsDetail = ({data}) => {
     .then(({ data} = res) => {
       const { best_day, human_readable_daily_average_including_other_language, human_readable_range, human_readable_total_including_other_language, end, start, user_id, dependencies, editors, languages, operating_systems, projects} = data.data;
       let daydate = DateTime.fromISO(best_day.date).toLocaleString({ weekday: 'long', month: 'short', day: '2-digit'});
+      let range_start = DateTime.fromISO(start).toLocaleString({ month: 'short', day: '2-digit' })
+      let range_end = DateTime.fromISO(end).toLocaleString({ month: 'short', day: '2-digit' })
       let best = {
         date: daydate,
         time: best_day.text
@@ -60,8 +61,8 @@ const StatsDetail = ({data}) => {
         best: best,
         daily_average: human_readable_daily_average_including_other_language,
         total: human_readable_total_including_other_language,
-        start: start,
-        end: end,
+        start: range_start,
+        end: range_end,
         user_id: user_id,
         editors: ide,
         languages: technology,
@@ -134,7 +135,9 @@ const StatsDetail = ({data}) => {
 
       currentStats = (
         <div>
-          <h2 className="content-title">{stats.human_readable_range}</h2>
+          <h2 className="stat-content-title">{stats.human_readable_range}<br></br><i className="small"><em className="alert-muted">  {stats.start} to {stats.end}</em></i></h2>
+          <p className="alert-dark"><strong>Total Time: </strong>
+          <i className="alert-success"> {stats.total}</i></p>
           <p className="alert-dark"><strong>Best Day: </strong>
           <i className="alert-success"> {stats.best.time}</i><small className="alert-muted"><em>  {stats.best.date}</em></small></p>
           <p className="alert-dark"><strong>Daily Average: </strong><i className="alert-success"> {stats.daily_average}</i></p>
@@ -163,7 +166,7 @@ const StatsDetail = ({data}) => {
   const nav_list = ranges.map((range, i) => {
     return (
       <li key={i}  className="h-item">
-        <Link className="stat-link" to={`${range}`}><i className="alert-light"><strong>{range}</strong></i></Link>
+        <Link className="stat-link" to={`${range}`}><i><strong>{range}</strong></i></Link>
       </li>
     )
   });
