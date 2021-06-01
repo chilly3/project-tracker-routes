@@ -21,6 +21,7 @@ const StatsDetail = ({data}) => {
     axios.get(`/api/v1/users/${userid}/stats/${range}`)
     .then(({ data} = res) => {
       const { best_day, human_readable_daily_average_including_other_language, human_readable_range, human_readable_total_including_other_language, end, start, user_id, dependencies, editors, languages, operating_systems, projects} = data.data;
+      console.log(data.data)
       let daydate = DateTime.fromISO(best_day.date).toLocaleString({ weekday: 'long', month: 'short', day: '2-digit'});
       let range_start = DateTime.fromISO(start).toLocaleString({ month: 'short', day: '2-digit' })
       let range_end = DateTime.fromISO(end).toLocaleString({ month: 'short', day: '2-digit' })
@@ -171,7 +172,6 @@ const StatsDetail = ({data}) => {
     )
   });
 
-  console.log(stats);
   return (
     <div>
       <Route exact path={url}>

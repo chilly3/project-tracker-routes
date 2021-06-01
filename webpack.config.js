@@ -7,11 +7,13 @@ module.exports = {
   entry: path.join(SRC_DIR, 'index.js'),
   output: {
     path: OUT_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   devtool: 'source-map',
   devServer: {
     contentBase: './client/dist',
+    historyApiFallback: true,
   },
   module: {
     rules: [

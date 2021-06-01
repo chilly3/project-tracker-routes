@@ -48,12 +48,12 @@ const Project = () => {
     axios.get(`/api/v1/users/${userid}/projects`)
     .then(({ data } = res) => {
       setProjects(data.data)
+      console.log(data.data);
     })
     .catch(err => {
       console.log(err);
     });
   }
-  console.log(projects);
   return (
     <div className="content">
       <div>

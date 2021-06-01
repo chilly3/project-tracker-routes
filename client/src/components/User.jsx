@@ -99,7 +99,6 @@ const User = () => {
     )
   }, this);
 
-  console.log(user_info);
   return (
     <div className="content">
       <div>
